@@ -7,8 +7,11 @@ MoModal empowers developers by providing a lightweight yet highly customizable m
 
 ## Get Started
 Install MoModal using your package manager of choice:
+
 `bower install momodal` or `npm install momodal --save`
+
 or clone the full module into your project
+
 `git clone git@github.com:Draggable/momodal`
 
 ## [Demo](#)
