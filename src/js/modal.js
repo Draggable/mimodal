@@ -31,7 +31,7 @@ export default class MoModal {
         pageX: Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / 2,
         pageY: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) / 2
       },
-      className: 'minimal-modal',
+      className: 'momodal',
       modalTransitionSpeed: 500,
       modalStyle: 'simple',
       prefix: 'modal-'
