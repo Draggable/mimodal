@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/Draggable/momodal/issues"
   },
-  "homepage": "https://kevinchappell.github.io/momodal",
+  "homepage": "https://draggable.github.io/momodal",
   "devDependencies": {
     "autoprefixer": "^6.3.5",
     "babel-core": "^6.7.4",

@@ -1,0 +1,33 @@
+{
+  "name": "momodal",
+  "description": "Lightweight all purpose modal written in vanilla js",
+  "main": "src/main.js",
+  "authors": [
+    "Kevin Chappell"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "modal",
+    "mini modal",
+    "minimal modal",
+    "momodal",
+    "vanilla",
+    "popup",
+    "es6",
+    "babel",
+    "webpack"
+  ],
+  "homepage": "https://github.com/Draggable/momodal",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
