@@ -1,0 +1,108 @@
+body {
+  font-family: sans-serif;
+}
+
+@keyframes toast {
+  0% {
+    transform: translate(0, 100%);
+    bottom: 0;
+    right: 20px;
+  }
+
+  7% {
+    transform: translate(0, 0);
+    bottom: 20px;
+    right: 20px;
+  }
+
+  90% {
+    transform: translate(0, 0);
+    bottom: 20px;
+    right: 20px;
+  }
+
+  100% {
+    transform: translate(120%, 0);
+    bottom: 20px;
+    right: 0;
+  }
+}
+
+.demo-wrap {
+  max-width: 800px;
+  margin: auto;
+}
+
+p {
+  margin: 20px 0 10px;
+}
+
+.btn-wrap {
+  margin-top: 50px;
+  text-align: center;
+}
+
+button {
+  color: #fff;
+  border: 0 none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+}
+
+.default, [class$='-default'] {
+  background-color: #3e3f3a !important;
+}
+
+.success, [class$='-success'] {
+  background-color: #93C54B !important;
+}
+
+.info, [class$='-info'] {
+  background-color: #29ABE0 !important;
+}
+
+.warning, [class$='-warning'] {
+  background-color: #F47C3C !important;
+}
+
+.danger, [class$='-danger'] {
+  background-color: #d9534f !important;
+}
+
+.toast {
+  padding: 10px 30px;
+  position: fixed;
+  width: auto;
+  line-height: 50px;
+  background: #93C54B;
+  text-shadow: 0 1px 0 #fefef;
+  color: #fff;
+  bottom: 0;
+  right: 20px;
+  transform: translate(0, 100%);
+  animation: 2500ms toast ease-in-out forwards;
+}
+
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+  border-radius: 0;
+}
+
+.btn-group > .btn:last-child:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+@media (max-width: 481px) {
+  .btn-wrap button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+}

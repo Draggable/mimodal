@@ -1,0 +1,52 @@
+<!doctype html>
+
+<head>
+  <title>MoModal | Vanilla JavaScript Modals</title>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <!-- Facepoop  -->
+  <meta property="og:title" content="Minimal Modal">
+  <meta property="og:site_name" content="MoModal | Pure JavaScript Modal">
+  <meta property="og:url" content="http://kevinchappell.github.io/minimal-modal">
+  <meta property="og:description" content="JavaScript module for modals and dialogs">
+  <meta property="fb:app_id" content="">
+  <meta property="og:type" content="product.item">
+  <!-- Twitter  -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:description" content="JavaScript module for simple modals and dialogs" />
+  <meta name="twitter:title" content="Minimal Modal | Pure JavaScript Modals" />
+  <meta name="twitter:site" content="http://kevinchappell.github.io/minimal-modal" />
+  <meta name="twitter:image" content="http://kevinchappell.github.io/minimal-modal/screenshot.png" />
+  <meta name="twitter:creator" content="@kevinchappell" />
+  <!-- Mobile Devices -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="HandheldFriendly" content="True">
+  <link rel="icon" type="image/png" href="">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/demo.css">
+  <link rel="stylesheet" href="../dist/modal.css">
+  <!-- Browser Shims -->
+  <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+  <div class="demo-wrap">
+    <h1>MoModal</h1>
+    <p>Have you ever needed a pure JavaScript modal module? If you're building a pure JavaScript app then this is the one for you.</p>
+    <div class="btn-wrap">
+      <p>Here are simple examples to get started.</p>
+      <button class="default" data-toggle="modal" data-modal-style="simple" data-modal-content="This is as simple as it gets.">1. Basic</button>
+      <button class="info" data-toggle="modal" data-modal-style="fade" data-modal-content="I just fadded in.">2. Fade</button>
+      <button class="warning" data-toggle="modal" data-modal-style="fade" data-modal-timeout="3000" data-modal-header="Consider yourself warned." id="simple-warning">3. Warning</button>
+      <button class="danger" data-toggle="dialog" data-modal-content="Are you sure you want to do this?">4. Detailed Confirm</button>
+      <button class="success">5. Full HTML</button>
+    </div>
+    <!-- <button id="simple-modal">Show Modal</button> -->
+  </div>
+  <!-- Scripts -->
+  <script src="../dist/modal.js"></script>
+  <script src="/js/demo.js"></script>
+</body>
+
+</html>
