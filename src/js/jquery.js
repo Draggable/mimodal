@@ -25,7 +25,7 @@
     factory(jQuery);
   }
 }(function($) {
-  $.fn.momodal = function() {
+  $.fn.mimodal = function() {
     return true;
   };
 }));

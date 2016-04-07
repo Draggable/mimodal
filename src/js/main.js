@@ -1,15 +1,15 @@
 import '../sass/_modal.scss'
-import MoModal from './modal'
+import Mimodal from './modal'
 
-window.momodal = new MoModal();
+window.mimodal = new Mimodal();
 
 var modalTriggers = document.querySelectorAll('[data-toggle]');
 
 function doModal() {
   var modalTrigger = this,
     modalMap = {
-      modal: window.momodal.dialog.bind(modalTrigger),
-      dialog: window.momodal.confirm.bind(modalTrigger)
+      modal: window.mimodal.dialog.bind(modalTrigger),
+      dialog: window.mimodal.confirm.bind(modalTrigger)
     },
     options = {};
 

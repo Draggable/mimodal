@@ -1,11 +1,11 @@
 {
-  "name": "momodal",
+  "name": "mimodal",
   "version": "0.0.1",
   "description": "Lightweight all purpose modal written in vanilla js",
   "main": "src/main.js",
   "files": [
-    "dist/momodal.js",
-    "dist/momodal.css"
+    "dist/mimodal.js",
+    "dist/mimodal.css"
   ],
   "scripts": {
     "build": "webpack",
@@ -15,12 +15,12 @@
   },
   "repositories": [{
     "type": "git",
-    "url": "git@github.com:Draggable/momodal.git"
+    "url": "git@github.com:Draggable/mimodal.git"
   }],
   "keywords": [
     "mini modal",
     "minimal modal",
-    "momodal",
+    "mimodal",
     "vanilla js modal",
     "popup",
     "es6",
@@ -30,9 +30,9 @@
   "author": "Kevin Chappell",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Draggable/momodal/issues"
+    "url": "https://github.com/Draggable/mimodal/issues"
   },
-  "homepage": "https://draggable.github.io/momodal",
+  "homepage": "https://draggable.github.io/mimodal",
   "devDependencies": {
     "autoprefixer": "^6.3.5",
     "babel-core": "^6.7.4",

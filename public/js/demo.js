@@ -15,7 +15,7 @@
 
 var simpleWarningButton = document.getElementById('simple-warning');
 simpleWarningButton.onclick = function() {
-  var modal = document.querySelector('.momodal'),
+  var modal = document.querySelector('.mimodal'),
     timerContainer = document.createElement('h1'),
     timer = 3;
   modal.appendChild(timerContainer);

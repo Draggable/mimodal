@@ -4,10 +4,10 @@ import { Helpers, Events } from './helpers';
 var _helpers = new Helpers();
 var events = new Events();
 
-export default class MoModal {
+export default class Mimodal {
   constructor(options) {
-    let momodal = this;
-    momodal.defaults = {
+    let mimodal = this;
+    mimodal.defaults = {
       buttons: [{
         tag: 'button',
         content: 'No',
@@ -15,7 +15,7 @@ export default class MoModal {
           className: 'btn btn-sm btn-danger'
         },
         action: function() {
-          momodal.closeDialog();
+          mimodal.closeDialog();
         }
       }, {
         tag: 'button',
@@ -24,27 +24,27 @@ export default class MoModal {
           className: 'btn btn-sm btn-success'
         },
         action: function() {
-          momodal.closeDialog();
+          mimodal.closeDialog();
         }
       }],
       coords: {
         pageX: Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / 2,
         pageY: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) / 2
       },
-      className: 'momodal',
+      className: 'mimodal',
       modalTransitionSpeed: 500,
       modalStyle: 'simple',
       prefix: 'modal-'
     };
 
     events.add('resize', function() {
-      momodal.defaults.coords = {
+      mimodal.defaults.coords = {
         pageX: Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / 2,
         pageY: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) / 2
       };
     });
 
-    momodal.opts = Object.assign(momodal.defaults, options);
+    mimodal.opts = Object.assign(mimodal.defaults, options);
   }
 
   getCoords(elem) {
@@ -74,7 +74,7 @@ export default class MoModal {
         className: overlayClass
       }
     });
-    overlay.classList.add(window.momodal.opts.prefix + opts.modalStyle);
+    overlay.classList.add(window.mimodal.opts.prefix + opts.modalStyle);
     document.body.appendChild(overlay);
 
     if (opts.modalStyle === 'fade') {
@@ -115,11 +115,11 @@ export default class MoModal {
   }
 
   dialog(options = {}) {
-    let opts = Object.assign({}, window.momodal.defaults, options);
+    let opts = Object.assign({}, window.mimodal.defaults, options);
     let modalContent = [];
     let buttons = [];
 
-    var overlay = window.momodal.showOverlay(opts);
+    var overlay = window.mimodal.showOverlay(opts);
 
     if (opts.modalHeader) {
       modalContent.push(_helpers.markup({ tag: 'header', attrs :{ className: opts.className + '-header'}, content: opts.modalHeader }));
@@ -161,7 +161,7 @@ export default class MoModal {
     }
 
     events.add('resize', function() {
-      let coords = window.momodal.getCoords();
+      let coords = window.mimodal.getCoords();
       miniModal.style.left = coords.pageX + 'px';
       miniModal.style.top = coords.pageY + 'px';
     });
@@ -171,8 +171,8 @@ export default class MoModal {
   }
 
   confirm(options = {}) {
-    let opts = Object.assign({}, window.momodal.defaults, options);
+    let opts = Object.assign({}, window.mimodal.defaults, options);
     opts.confirm = true;
-    return window.momodal.dialog(opts);
+    return window.mimodal.dialog(opts);
   }
 }

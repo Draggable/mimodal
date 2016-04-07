@@ -1,5 +1,5 @@
 {
-  "name": "momodal",
+  "name": "mimodal",
   "description": "Lightweight all purpose modal written in vanilla js",
   "main": "src/main.js",
   "authors": [
@@ -10,14 +10,14 @@
     "modal",
     "mini modal",
     "minimal modal",
-    "momodal",
+    "mimodal",
     "vanilla",
     "popup",
     "es6",
     "babel",
     "webpack"
   ],
-  "homepage": "https://github.com/Draggable/momodal",
+  "homepage": "https://github.com/Draggable/mimodal",
   "moduleType": [
     "amd",
     "es6",
