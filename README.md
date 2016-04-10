@@ -1,5 +1,7 @@
 # Mimodal
 
+[![Join the chat at https://gitter.im/Draggable/mimodal](https://badges.gitter.im/Draggable/mimodal.svg)](https://gitter.im/Draggable/mimodal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Mimodal is module for rending modals without a framework. Written in vanilla JS, this module is fresh take on modals without the overhead of a front-end framework such as Bootstrap or Foundation.
 
 ## Whats it do?
