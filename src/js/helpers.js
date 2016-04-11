@@ -59,6 +59,20 @@ export class Helpers {
     })();
   }
 
+  makeControlBar(controls) {
+    let helpers = this,
+      controlBar = [];
+    for (var i = 0; i < controls.length; i++) {
+      let control = helpers.markup({ tag: 'li', content: controls[i].label, attrs: {title: controls[i].label, className: 'modal-' + controls[i].type} });
+      if (controls[i].action) {
+        control.onclick = controls[i].action;
+      }
+      controlBar.push(control);
+    }
+
+    return helpers.markup({ tag: 'ul', content: controlBar, attrs: { className: 'modal-controls' } });
+  }
+
   markup(opts) {
     let contentType,
       field = document.createElement(opts.tag),
@@ -99,6 +113,7 @@ export class Helpers {
 
     return field;
   }
+
 }
 
 /**
@@ -115,15 +130,30 @@ export class Events {
    * @param {String}   event [description]
    * @param {Function} cb    [description]
    */
-  add(event, cb) {
+  add(event, cb, elem = window) {
     let events = this;
     events[event] = events[event] || { callbacks: [] };
-    if (!events[event].callbacks.length) {
-      window.addEventListener(event, function(){
-        events.throttle(events[event]);
-      });
-    }
     events.addCallback(event, cb);
+    let callback = function(evt) {
+      events.throttle(events[event], evt);
+    };
+    // if (!events[event].callbacks.length) {
+    elem.addEventListener(event, callback);
+    // }
+    return callback;
+  }
+
+  remove(event, cb, elem = window) {
+    let events = this;
+    events[event] = events[event] || { callbacks: [] };
+    events.addCallback(event, cb);
+    let callback = function(evt) {
+      events.throttle(events[event], evt);
+    };
+    // if (!events[event].callbacks.length) {
+    elem.addEventListener(event, callback);
+    // }
+    return callback;
   }
 
   /**
@@ -142,9 +172,9 @@ export class Events {
    * Run the callbacks for a specific event
    * @param  {Object} event
    */
-  runCallbacks(event) {
+  runCallbacks(event, evt) {
     event.callbacks.forEach(function(callback) {
-      callback();
+      callback(evt);
     });
 
     event.running = false;
@@ -154,17 +184,61 @@ export class Events {
    * Throttle an event
    * @param  {Object} event {running, callbacks}
    */
-  throttle(event) {
+  throttle(event, evt) {
     let events = this;
+
     if (!event.running) {
       event.running = true;
       if (window.requestAnimationFrame) {
-        window.requestAnimationFrame(function(){
-          events.runCallbacks(event);
+        window.requestAnimationFrame(function() {
+          events.runCallbacks(event, evt);
         });
       } else {
         setTimeout(events.runCallbacks.bind(event), 66);
       }
     }
   }
+
+
+  drag(events, evt) {
+    let drag = {},
+      modal = this;
+
+    function getOffset(modal, evt) {
+      let halfWidth = modal.offsetWidth / 2,
+      halfHeight = modal.offsetHeight / 2;
+
+      return {
+        x: (evt.clientX - modal.offsetLeft + halfWidth) - halfWidth,
+        y: (evt.clientY - modal.offsetTop + halfHeight) - halfHeight
+      };
+    }
+
+    drag.move = function(evt) {
+      let coords = {
+        x: evt.clientX - drag.offset.x,
+        y: evt.clientY - drag.offset.y
+      };
+
+      modal.style.position = 'absolute';
+      modal.style.top = coords.y + 'px';
+      modal.style.left = coords.x + 'px';
+    };
+
+    drag.stop = function() {
+      events.mousemove.callbacks = [];
+      window.removeEventListener('mouseup', drag.stop);
+    };
+
+    drag.start = (function(evt) {
+      if (evt.target !== modal && !evt.target.classList.contains('modal-move')) {
+        return false;
+      }
+      drag.offset = getOffset(modal, evt);
+      window.addEventListener('mouseup', drag.stop);
+      events.add('mousemove', drag.move);
+    })(evt);
+
+  }
+
 }

@@ -99,9 +99,9 @@ export default class Mimodal {
     return overlay;
   }
 
-  closeDialog(overlay, opts = this.opts) {
-    overlay = overlay || document.querySelector(`.${opts.className}-overlay`);
-
+  closeDialog() {
+    let opts = window.mimodal.opts;
+    let overlay = document.querySelector(`.${opts.className}-overlay`);
     overlay.classList.remove(opts.prefix + 'visible');
     overlay.classList.add(opts.prefix + 'removing');
 
@@ -122,11 +122,11 @@ export default class Mimodal {
     var overlay = window.mimodal.showOverlay(opts);
 
     if (opts.modalHeader) {
-      modalContent.push(_helpers.markup({ tag: 'header', attrs :{ className: opts.className + '-header'}, content: opts.modalHeader }));
+      modalContent.push(_helpers.markup({ tag: 'header', attrs: { className: opts.className + '-header' }, content: opts.modalHeader }));
     }
 
     if (opts.modalContent) {
-      modalContent.push(_helpers.markup({ tag: 'div', attrs: { className: opts.className + '-content'}, content: opts.modalContent }));
+      modalContent.push(_helpers.markup({ tag: 'div', attrs: { className: opts.className + '-content' }, content: opts.modalContent }));
     }
 
     if (opts.confirm) {
@@ -140,9 +140,16 @@ export default class Mimodal {
       }
 
       buttonWrap = _helpers.markup({ tag: 'div', attrs: { className: 'btn-group' }, content: buttons });
-      modalContent.push(_helpers.markup({ tag: 'footer', attrs : { className: opts.className + '-footer' }, content: buttonWrap }));
+      modalContent.push(_helpers.markup({ tag: 'footer', attrs: { className: opts.className + '-footer' }, content: buttonWrap }));
     }
 
+    var controls = [{
+      type: 'close',
+      label: 'Close Modal',
+      action: window.mimodal.closeDialog
+    }];
+
+    var controlBar = _helpers.makeControlBar(controls);
     var miniModal = _helpers.markup({ tag: 'div', content: modalContent, attrs: { className: opts.className } });
 
     if (opts.coords) {
@@ -151,9 +158,18 @@ export default class Mimodal {
       miniModal.classList.add('positioned');
     }
 
+    if (opts.draggable) {
+      var moveControl = _helpers.markup({ tag: 'li', content: 'Move Modal', attrs: { className: 'modal-move' } });
+      miniModal.classList.add('draggable');
+      controlBar.insertBefore(moveControl, controlBar.firstChild);
+      moveControl.addEventListener('mousedown', events.drag.bind(miniModal, events), false);
+      miniModal.addEventListener('mousedown', events.drag.bind(miniModal, events), false);
+    }
+
     miniModal.style.left = opts.coords.pageX + 'px';
     miniModal.style.top = opts.coords.pageY + 'px';
 
+    miniModal.insertBefore(controlBar, miniModal.firstChild);
     overlay.appendChild(miniModal);
 
     if (opts.confirm) {

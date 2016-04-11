@@ -7,16 +7,16 @@
   <!-- Facepoop  -->
   <meta property="og:title" content="Minimal Modal">
   <meta property="og:site_name" content="Mimodal | Pure JavaScript Modal">
-  <meta property="og:url" content="http://kevinchappell.github.io/minimal-modal">
+  <meta property="og:url" content="http://draggable.github.io/mimodal">
   <meta property="og:description" content="JavaScript module for modals and dialogs">
   <meta property="fb:app_id" content="">
   <meta property="og:type" content="product.item">
   <!-- Twitter  -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:description" content="JavaScript module for simple modals and dialogs" />
-  <meta name="twitter:title" content="Minimal Modal | Pure JavaScript Modals" />
-  <meta name="twitter:site" content="http://kevinchappell.github.io/minimal-modal" />
-  <meta name="twitter:image" content="http://kevinchappell.github.io/minimal-modal/screenshot.png" />
+  <meta name="twitter:title" content="Mimodal | Pure JavaScript Modals and Dialogs" />
+  <meta name="twitter:site" content="http://draggable.github.io/mimodal" />
+  <meta name="twitter:image" content="http://draggable.github.io/mimodal/screenshot.png" />
   <meta name="twitter:creator" content="@kevinchappell" />
   <!-- Mobile Devices -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,14 +33,22 @@
 <body>
   <div class="demo-wrap">
     <h1>Mimodal</h1>
-    <p>Have you ever needed a pure JavaScript modal module? If you're building a pure JavaScript app then this is the one for you.</p>
-    <div class="btn-wrap">
-      <p>Here are simple examples to get started.</p>
-      <button class="default" data-toggle="modal" data-modal-style="simple" data-modal-content="This is as simple as it gets.">1. Basic</button>
-      <button class="info" data-toggle="modal" data-modal-style="fade" data-modal-content="I just fadded in.">2. Fade</button>
-      <button class="warning" data-toggle="modal" data-modal-style="fade" data-modal-timeout="3000" data-modal-header="Consider yourself warned." id="simple-warning">3. Warning</button>
-      <button class="danger" data-toggle="dialog" data-modal-content="Are you sure you want to do this?">4. Detailed Confirm</button>
-      <!-- <button class="success">5. Full HTML</button> -->
+    <div id="basic-examples">
+      <p>Have you ever needed a pure JavaScript modal module? If you're building a pure JavaScript app then this is the one for you.</p>
+      <div class="btn-wrap">
+        <p>Here are simple examples to get started.</p>
+        <button class="default" data-toggle="modal" data-modal-style="simple" data-modal-content="This is as simple as it gets.">1. Basic</button>
+        <button class="info" data-toggle="modal" data-modal-style="fade" data-modal-content="I just fadded in.">2. Fade</button>
+        <button class="warning" data-toggle="modal" data-modal-style="fade" data-modal-timeout="3000" data-modal-header="Consider yourself warned." id="simpleWarning">3. Warning</button>
+        <button class="danger" data-toggle="dialog" data-modal-content="Are you sure you want to do this?">4. Detailed Confirm</button>
+        <!-- <button class="success">5. Full HTML</button> -->
+      </div>
+    </div>
+    <div id="advanced-examples">
+      <div class="btn-wrap">
+      <p>Mimodal's real power is in its extensibility. By passing a configuration option your modals can do whatever you need them to do.</p>
+        <button class="default" id="draggable">5. Draggable</button>
+      </div>
     </div>
     <!-- <button id="simple-modal">Show Modal</button> -->
   </div>
