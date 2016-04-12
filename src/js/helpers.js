@@ -63,7 +63,7 @@ export class Helpers {
     let helpers = this,
       controlBar = [];
     for (var i = 0; i < controls.length; i++) {
-      let control = helpers.markup({ tag: 'li', content: controls[i].label, attrs: {title: controls[i].label, className: 'modal-' + controls[i].type} });
+      let control = helpers.markup({ tag: 'li', content: controls[i].label, attrs: { title: controls[i].label, className: 'modal-' + controls[i].type } });
       if (controls[i].action) {
         control.onclick = controls[i].action;
       }
@@ -206,12 +206,28 @@ export class Events {
 
     function getOffset(modal, evt) {
       let halfWidth = modal.offsetWidth / 2,
-      halfHeight = modal.offsetHeight / 2;
+        halfHeight = modal.offsetHeight / 2;
 
       return {
         x: (evt.clientX - modal.offsetLeft + halfWidth) - halfWidth,
         y: (evt.clientY - modal.offsetTop + halfHeight) - halfHeight
       };
+    }
+
+    /**
+     * Set the width before dragging so the modal
+     * does not resize near window edges
+     */
+    function setWidth(modal) {
+      var style;
+      if (window.getComputedStyle) {
+        style = window.getComputedStyle(modal, null);
+
+      } else if (modal.currentStyle) {
+        style = modal.currentStyle
+      }
+
+      return style.width;
     }
 
     drag.move = function(evt) {
@@ -227,6 +243,7 @@ export class Events {
 
     drag.stop = function() {
       events.mousemove.callbacks = [];
+      modal.style.cursor = 'default';
       window.removeEventListener('mouseup', drag.stop);
     };
 
@@ -235,6 +252,8 @@ export class Events {
         return false;
       }
       drag.offset = getOffset(modal, evt);
+      modal.style.width = setWidth(modal);
+      modal.style.cursor = 'move';
       window.addEventListener('mouseup', drag.stop);
       events.add('mousemove', drag.move);
     })(evt);

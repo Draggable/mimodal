@@ -150,7 +150,8 @@ export default class Mimodal {
     }];
 
     var controlBar = _helpers.makeControlBar(controls);
-    var miniModal = _helpers.markup({ tag: 'div', content: modalContent, attrs: { className: opts.className } });
+    var modalInner = _helpers.markup({ tag: 'div', content: modalContent, attrs: { className: opts.className + '-inner' } });
+    var miniModal = _helpers.markup({ tag: 'div', content: modalInner, attrs: { className: opts.className } });
 
     if (opts.coords) {
       miniModal.style.position = 'fixed';
