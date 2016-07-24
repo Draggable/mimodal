@@ -19,7 +19,7 @@ const bannerTemplate = [
 
 module.exports = {
   entry: {
-    modal: './src/js/main.js'
+    mimodal: './src/js/main.js'
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -48,7 +48,7 @@ module.exports = {
   },
   // devtool: 'source-map',
   plugins: [
-    new CleanWebpackPlugin(['dist', 'public/js/modal.js', 'public/css/modal.css']),
+    new CleanWebpackPlugin(['dist', 'public/js/mimodal.js', 'public/css/mimodal.css']),
     new ExtractTextPlugin('[name].css'),
     new optimize.DedupePlugin(),
     new BannerPlugin(bannerTemplate),

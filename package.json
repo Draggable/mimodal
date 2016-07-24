@@ -1,6 +1,6 @@
 {
   "name": "mimodal",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Lightweight all purpose modal written in vanilla js",
   "main": "dist/modal.js",
   "files": [
