@@ -3,13 +3,7 @@ import path from 'path';
 import autoprefixer from 'autoprefixer';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
-import { optimize, BannerPlugin } from 'webpack';
-
-const sassLoaders = [
-  'css?sourceMap',
-  'sass?sourceMap',
-  'postcss-loader?pack=cleaner'
-];
+import webpack from 'webpack';
 
 const bannerTemplate = [
   `${pkg.name} - ${pkg.homepage}`,
@@ -18,6 +12,7 @@ const bannerTemplate = [
 ].join('\n');
 
 module.exports = {
+  mode: 'production',
   entry: {
     mimodal: './src/js/main.js'
   },
@@ -27,53 +22,51 @@ module.exports = {
     filename: '[name].js'
   },
   module: {
-    preLoaders: [{
-      test: /\.js?$/,
-      loaders: ['eslint'],
-      include: 'src/js/'
-    }],
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel',
-      query: {
+      loader: 'babel-loader',
+      options: {
         presets: ['es2015'],
         plugins: ['transform-runtime']
       }
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css?sourceMap', 'sass?sourceMap'],
-      loader: ExtractTextPlugin.extract('style', sassLoaders.join('!'))
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: { sourceMap: true }
+        }, {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+            includePaths: [path.resolve(__dirname, './src/sass')],
+            outputStyle: 'compressed'
+          }
+        }, {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+            plugins: () => [autoprefixer({ browsers: ['last 2 versions'] })]
+          }
+        }]
+      })
     }]
   },
-  // devtool: 'source-map',
   plugins: [
     new CleanWebpackPlugin(['dist', 'public/js/mimodal.js', 'public/css/mimodal.css']),
     new ExtractTextPlugin('[name].css'),
-    new optimize.DedupePlugin(),
-    new BannerPlugin(bannerTemplate),
-    new optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    })
+    new webpack.BannerPlugin(bannerTemplate)
   ],
-  sassLoader: {
-    includePaths: [path.resolve(__dirname, './src/sass')]
-  },
-  postcss: function() {
-    return {
-      defaults: [autoprefixer],
-      cleaner: [autoprefixer({ browsers: ['last 2 versions'] })]
-    };
-  },
   resolve: {
-    extensions: ['', '.js', '.scss'],
-    modulesDirectories: ['src', 'node_modules']
+    extensions: ['.js', '.scss'],
+    modules: ['src', 'node_modules']
   },
   devServer: {
     hot: true,
     contentBase: 'public/',
     progress: true,
-    colors: true,
     noInfo: true
   }
 };
